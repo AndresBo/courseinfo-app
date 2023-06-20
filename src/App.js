@@ -1,6 +1,7 @@
 
 // create a section HTML component for each course and using map, send each part to Content component
 const Header = ({courseName, courseContent}) => {
+  console.log(courseContent)
   return (
   <section>
     <h2>{courseName}</h2>
@@ -14,17 +15,25 @@ const Header = ({courseName, courseContent}) => {
 // creates a <p> element for each part 
 const Content = ({part, exercises}) => <p>{part} {exercises}</p>
 
+// As an exercise, added the number of exercises in each course using a for loop or a reducer
 
-// !!! get sum of exercises in a course - use reducer? 
-const TotalExercises = ({parts}) => {
-  let total = 0
-  for (var i = 0; i < parts.length; i++) {
-    total += parts[i].exercises
-  }
+// get sum of exercises in a course - use FOR LOOP:
+// const TotalExercises = ({parts}) => {
+//   let total = 0
+//   for (var i = 0; i < parts.length; i++) {
+//     total += parts[i].exercises
+//   }
   
-  return (
-    <p><b>total of {total} exercises</b></p>
-  )
+//   return (
+//     <p><b>total of {total} exercises</b></p>
+//   )
+// }
+
+// get sum of exercises in a course - use REDUCER:
+const TotalExercises = ({parts}) => {
+  const sumWith = parts.reduce(
+    (accumulator, parts) => accumulator + parts.exercises, 0)
+  return <p>Total number of exercises: {sumWith}</p>
 }
 
 
