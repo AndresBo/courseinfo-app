@@ -1,14 +1,28 @@
 
-
-const Header = ({courseName}) => (<h2>{courseName}</h2>)
-
-
-const Courses = ({courses}) => {
-  courses.map(course => 
-    <Header courseName={course.name} />
+// create a section HTML component for each course and using map, send each part to Content component
+const Header = ({courseName, courseContent}) => {
+  console.log(courseContent)
+  return (
+  <section>
+    <h2>{courseName}</h2>
+    {courseContent.map(part => <Content key={part.id} part={part.name} exercises={part.exercises}/>)}
+  </section>
   )
 }
 
+// creates a <p> element for each part 
+const Content = ({part, exercises}) => <p>{part} {exercises}</p>
+
+// Get courses array and using map, passes each course name and parts to Header component:
+const Courses = ({courses}) => {
+    return (
+      <div>
+        {courses.map(course => <Header key={course.id} courseName={course.name} courseContent={course.parts}/>)}
+      </div>
+    )
+}
+
+// root component with courses array of data, passes all courses array to Courses component:
 const App = () => {
 
   const courses = [
