@@ -35,6 +35,7 @@ const TotalExercises = ({parts}) => {
 const Courses = ({courses}) => {
     return (
       <div>
+        <h1>Web Dev Courses</h1>
         {courses.map(course => <Header key={course.id} courseName={course.name} courseContent={course.parts}/>)}
       </div>
     )
