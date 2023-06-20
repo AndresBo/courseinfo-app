@@ -1,17 +1,35 @@
 
 // create a section HTML component for each course and using map, send each part to Content component
 const Header = ({courseName, courseContent}) => {
-  console.log(courseContent)
+  //console.log(courseContent)
   return (
   <section>
     <h2>{courseName}</h2>
     {courseContent.map(part => <Content key={part.id} part={part.name} exercises={part.exercises}/>)}
+    <TotalExercises parts={courseContent}/>
   </section>
   )
 }
 
+
 // creates a <p> element for each part 
 const Content = ({part, exercises}) => <p>{part} {exercises}</p>
+
+
+// !!! get sum of exercises in a course - use reducer? 
+const TotalExercises = ({parts}) => {
+  console.log(parts);
+  let total = 0
+  for (var i = 0; i < parts.length; i++) {
+    total += parts[i].exercises
+  }
+  console.log(total)
+
+  return (
+    <p>total of {total} exercises</p>
+  )
+}
+
 
 // Get courses array and using map, passes each course name and parts to Header component:
 const Courses = ({courses}) => {
